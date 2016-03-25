@@ -16,7 +16,8 @@
       <ul class="nav">
         <li><a ui-sref="route1">Route 1</a></li>
         <li><a ui-sref="route2">Route 2</a></li>
-        <li><a ui-sref="ruby"> ruby</a></li>
+        <li><a ui-sref="categorie"> ruby</a></li>
+
       </ul>
     </div>
   </div>
@@ -45,6 +46,13 @@
             url: "/route1",
             templateUrl: "route1.html"
         })
+        .state('new-qs', {
+            url: '/new?portfolioId',
+            templateUrl: 'new.html',
+            controller: function($scope, $stateParams) {
+            $scope.portfolioId = $stateParams.portfolioId;
+  }
+})
           .state('route1.list', {
               url: "/list",
               templateUrl: "route1.list.html",
@@ -52,9 +60,10 @@
                 $scope.items = ["A", "List", "Of", "Items"];
               }
           })
-          .state('ruby', {
-              url: "/ruby",
-              templateUrl: "ruby.html"
+          .state('categorie', {
+              url: "/categorie",
+              templateUrl: "categorie.html",
+              controller: 'databaseController'
           })
 
         .state('route2', {
@@ -76,6 +85,19 @@
 
 
     });
+
+    myapp.controller('databaseController', ['$scope', '$http', function ($scope, $http) {
+        $scope.data = [];
+
+        $http.get("https://api-test.4morgen.org/v1/categories")
+        .success(function(data){
+            $scope.data = data;
+            console.log(data);
+        })
+        .error(function() {
+            $scope.data = "error in fetching data";
+        });
+        }]);
 
   </script>
 

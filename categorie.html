@@ -1,0 +1,20 @@
+<h1>ruby ruby ruby</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>naam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in data">
+      <td>
+      <h1>{{x.Id}}</h1>
+      <a ui-sref="new-qs({ portfolioId: x.Id })">New (query string)</a>
+      </td>
+      <td>{{x.Name}}</td>
+    </tr>
+  </tbody>
+
+
+</table>
