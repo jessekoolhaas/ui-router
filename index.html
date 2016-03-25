@@ -35,10 +35,10 @@
   <!-- App Script -->
   <script>
     var myapp = angular.module('myapp', ["ui.router"])
-    myapp.config(function($stateProvider, $urlRouterProvider){
+    myapp.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 
       // For any unmatched url, send to /route1
-      $urlRouterProvider.otherwise("/")
+
 
       $stateProvider
         .state('route1', {
@@ -51,10 +51,6 @@
               controller: function($scope){
                 $scope.items = ["A", "List", "Of", "Items"];
               }
-          })
-          .state('home', {
-              url: "/home",
-              templateUrl: "ruby.html"
           })
           .state('ruby', {
               url: "/ruby",
@@ -72,7 +68,14 @@
                 $scope.things = ["A", "Set", "Of", "Things"];
               }
           })
-    })
+          .state('home', {
+              url: "/home",
+              templateUrl: "ruby.html"
+          })
+
+
+
+    });
 
   </script>
 
