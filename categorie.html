@@ -10,7 +10,7 @@
     <tr ng-repeat="x in data">
       <td>
       <h1>{{x.Id}}</h1>
-      <a ui-sref="new-qs({ portfolioId: x.Id })">New (query string)</a>
+      <a ui-sref="new-qs({ portfolioId: x.Id })">New (query string) met{{x.Id}}</a>
       </td>
       <td>{{x.Name}}</td>
     </tr>

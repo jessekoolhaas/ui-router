@@ -47,7 +47,7 @@
             templateUrl: "route1.html"
         })
         .state('new-qs', {
-            url: '/new?portfolioId',
+            url: '/new/:portfolioId?',
             templateUrl: 'new.html',
             controller: function($scope, $stateParams) {
             $scope.portfolioId = $stateParams.portfolioId;
@@ -93,6 +93,7 @@
         .success(function(data){
             $scope.data = data;
             console.log(data);
+            console.log("data goed ontvangen");
         })
         .error(function() {
             $scope.data = "error in fetching data";
