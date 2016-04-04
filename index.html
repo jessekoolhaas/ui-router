@@ -51,9 +51,7 @@
         .state('new-qs', {
             url: '/new/:portfolioId?',
             templateUrl: 'new.html',
-            controller: function($scope, $stateParams) {
-            $scope.portfolioId = $stateParams.portfolioId;
-  }
+            controller: 'databaseCtl'
 })
           .state('route1.list', {
               url: "/list",
@@ -83,7 +81,9 @@
               url: "/home",
               templateUrl: "ruby.html"
           })
-
+          $scope.goToStateWithVars = function (name) {
+                    $state.go('new-qs', {}, {portfolioId: name})
+                };
 
 
     });
@@ -101,9 +101,22 @@
             $scope.data = "error in fetching data";
         });
         }]);
-        $scope.goToStateWithVars = function (name) {
-                  $state.go('new-qs', {}, {portfolioId: name})
-              };
+
+        myapp.controller('databaseCtl', ['$scope', '$http', function ($scope, $http) {
+            $scope.data = [];
+
+            $http.get("https://api-test.4morgen.org/v1/categories")
+            .success(function(data){
+                $scope.data = data;
+                console.log(data);
+                console.log("data goed ontvangen");
+            })
+            .error(function() {
+                $scope.data = "error in fetching data";
+            });
+            }]);
+
+
 
   </script>
 
