@@ -17,6 +17,7 @@
         <li><a ui-sref="route1">Route 1</a></li>
         <li><a ui-sref="route2">Route 2</a></li>
         <li><a ui-sref="categorie"> ruby</a></li>
+        <li><a ui-sref="winkels"> Winkels</a></li>
 
       </ul>
     </div>
@@ -24,7 +25,7 @@
 
   <div class="row">
     <div class="span12">
-      <div class="well" ui-view></div>
+      <div class="well" ui-view autoscroll='true'></div>
     </div>
   </div>
 
@@ -33,92 +34,18 @@
   <!-- UI-Router -->
   <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
+
   <!-- App Script -->
   <script>
     var myapp = angular.module('myapp', ["ui.router"])
-    myapp.config(function($stateProvider, $urlRouterProvider,$locationProvider){
-
-      // For any unmatched url, send to /route1
 
 
-      $stateProvider
-
-
-        .state('route1', {
-            url: "/route1",
-            templateUrl: "route1.html"
-        })
-        .state('new-qs', {
-            url: '/new/:portfolioId?',
-            templateUrl: 'new.html',
-            controller: 'databaseCtl'
-})
-          .state('route1.list', {
-              url: "/list",
-              templateUrl: "route1.list.html",
-              controller: function($scope){
-                $scope.items = ["A", "List", "Of", "Items"];
-              }
-          })
-          .state('categorie', {
-              url: "/categorie",
-              templateUrl: "categorie.html",
-              controller: 'databaseController'
-          })
-
-        .state('route2', {
-            url: "/route2",
-            templateUrl: "route2.html"
-        })
-          .state('route2.list', {
-              url: "/list",
-              templateUrl: "route2.list.html",
-              controller: function($scope){
-                $scope.things = ["A", "Set", "Of", "Things"];
-              }
-          })
-          .state('home', {
-              url: "/home",
-              templateUrl: "ruby.html"
-          })
-          $scope.goToStateWithVars = function (name) {
-                    $state.go('new-qs', {}, {portfolioId: name})
-                };
-
-
-    });
-
-    myapp.controller('databaseController', ['$scope', '$http', function ($scope, $http) {
-        $scope.data = [];
-
-        $http.get("https://api-test.4morgen.org/v1/categories")
-        .success(function(data){
-            $scope.data = data;
-            console.log(data);
-            console.log("data goed ontvangen");
-        })
-        .error(function() {
-            $scope.data = "error in fetching data";
-        });
-        }]);
-
-        myapp.controller('databaseCtl', ['$scope', '$http', function ($scope, $http) {
-            $scope.data = [];
-
-            $http.get("https://api-test.4morgen.org/v1/categories")
-            .success(function(data){
-                $scope.data = data;
-                console.log(data);
-                console.log("data goed ontvangen");
-            })
-            .error(function() {
-                $scope.data = "error in fetching data";
-            });
-            }]);
 
 
 
   </script>
+    <script src="app/routing.js"></script>
+    <script src="app/api-controller.js"></script>
 
 </body>
 

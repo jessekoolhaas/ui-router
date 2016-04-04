@@ -1,0 +1,13 @@
+<h1>hallo</h1>
+<table class="table table-striped table-hover"  >
+  <tr ng-repeat="winkel in winkels | limitTo:100">
+    <td>
+      {{winkel.id}}
+    </td>
+    <td>
+      <a ui-sref="winkel-display({ winkel: winkel.title_url})">
+      {{winkel.title}}
+      </a>
+    </td>
+  </tr>
+</table>

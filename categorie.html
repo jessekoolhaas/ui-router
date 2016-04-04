@@ -10,7 +10,7 @@
     <tr ng-repeat="x in data">
       <td>
       <h1>{{x.Id}}</h1>
-      <a ng-click="goToStateWithVars(x.Id)">New (query string) met{{x.Id}}</a>
+      <a ui-sref="new-qs({ Category: x.Id })">sturen met {{x.Id}}</a>
       </td>
       <td>{{x.Name}}</td>
     </tr>
