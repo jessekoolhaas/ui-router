@@ -42,6 +42,8 @@
 
 
       $stateProvider
+
+
         .state('route1', {
             url: "/route1",
             templateUrl: "route1.html"
@@ -99,6 +101,9 @@
             $scope.data = "error in fetching data";
         });
         }]);
+        $scope.goToStateWithVars = function (name) {
+                  $state.go('new-qs', {}, {portfolioId: name})
+              };
 
   </script>
 
