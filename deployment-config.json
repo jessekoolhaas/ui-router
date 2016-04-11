@@ -1,0 +1,9 @@
+{
+    "type": "ftp",
+    "host": "provenwebdevelopers-test.4morgen.org",
+    "username": "morgentest",
+    "password": "LjnC25q2s",
+    "port": 21,
+    "remotePath": "/domains/provenwebdevelopers-test.4morgen.org/public_html",
+    "uploadOnSave": false
+}

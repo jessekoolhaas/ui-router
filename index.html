@@ -14,10 +14,8 @@
     <div class="navbar-inner">
       <a class="brand" ui-sref="home">Quick Start</a>
       <ul class="nav">
-        <li><a ui-sref="route1">Route 1</a></li>
-        <li><a ui-sref="route2">Route 2</a></li>
-        <li><a ui-sref="categorie"> ruby</a></li>
         <li><a ui-sref="winkels"> Winkels</a></li>
+        <li><a ui-sref="charities"> charities </a></li>
 
       </ul>
     </div>
@@ -25,7 +23,7 @@
 
   <div class="row">
     <div class="span12">
-      <div class="well" ui-view autoscroll='true'></div>
+      <div class="well" ui-view></div>
     </div>
   </div>
 
@@ -34,18 +32,75 @@
   <!-- UI-Router -->
   <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
-
   <!-- App Script -->
   <script>
     var myapp = angular.module('myapp', ["ui.router"])
 
+    myapp.controller('winkelDatabaseCtl', function ($scope,$stateParams,$http ){
+      $scope.currentWinkel = $stateParams.winkel;
+      $scope.url   = '../app/database/winkel.php?user_id='+ $scope.currentWinkel;
+      console.log($scope.url);
+      $http({
+        method: 'GET',
+        url: $scope.url
+        })
+      .success(function(winkelsuitleg){
+          $scope.winkelsuitleg = winkelsuitleg;
+          if (winkelsuitleg == 0) {
+          // console.log("data bestaat niet");
+          }
+          else {
+            // console.log(winkelsuitleg);
+            // console.log("data goed ontvangen");
 
+          }
+
+      })
+      .error(function() {
+          $scope.winkelsuitleg = "error in fetching data";
+      });
+
+
+
+        });
+
+      myapp.controller('databaseCtl', function ($scope,$stateParams ){
+        $scope.currentCategoryName = $stateParams.Category;
+
+        // console.log($scope.currentCategoryName);
+      });
+
+        myapp.controller('LocalDatabaseWinkels', ['$scope', '$http', function ($scope, $http) {
+            $scope.winkels = [];
+
+            $http.get("../app/database/winkel/allewinkels.php")
+            .success(function(winkels){
+                $scope.winkels = winkels;
+                // console.log(winkels);
+                // console.log("data goed ontvangen");
+            })
+            .error(function() {
+                $scope.data = "error in fetching data";
+            });
+            }]);
+            myapp.controller('LocalDatabaseMyTable', ['$scope', '$http', function ($scope, $http) {
+                $scope.winkels = [];
+
+                $http.get("app/database/allegoededoelen.php")
+                .success(function(charities){
+                    $scope.charities = charities;
+                    console.log(charities);
+                    console.log("data goed ontvangen");
+                })
+                .error(function() {
+                    $scope.data = "error in fetching data";
+                });
+                }]);
 
 
 
   </script>
-    <script src="app/routing.js"></script>
-    <script src="app/api-controller.js"></script>
+  <script src="app/routing.js"></script>
 
 </body>
 

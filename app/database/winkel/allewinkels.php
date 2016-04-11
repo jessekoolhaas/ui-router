@@ -1,8 +1,7 @@
 <?php
 //database settings
-$connect = mysqli_connect("127.0.0.1", "root", "", "company");
-
-$result = mysqli_query($connect, "select * from shops");
+include 'connectie.php';
+$result = mysqli_query($connect, "select id,title,title_url from shops");
 
 $winkels = array();
 
