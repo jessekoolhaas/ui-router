@@ -1,6 +1,6 @@
 <?php
 //database settings
-include 'connectie.php';
+include '../connectie.php';
 $result = mysqli_query($connect, "select id,title,title_url from shops");
 
 $winkels = array();

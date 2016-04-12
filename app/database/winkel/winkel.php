@@ -1,6 +1,6 @@
 
 <?php
-include 'app/connectie.php';
+include '../connectie.php';
 $a = $_GET;
 $test = $a[user_id];
 //database settings
