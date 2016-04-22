@@ -1,7 +1,31 @@
-<h1>hallo</h1>
+<div ng-controller="allWinkelDatabase">
+<button  class="btn btn-succes" type="button" name="button" ng-click="website()">Ga naar website</button>
+
+<h1>Winkels</h1>
+
+<form>
+  <input type="radio" name="gender" value="1" ng-model="radio" checked> overzicht<br>
+  <input type="radio" name="gender" value="2" ng-model="radio"> huis &amp; tuin<br>
+  <input type="radio" name="gender" value="3" ng-model="radio"> electronica<br>
+  <input type="radio" name="gender" value="4" ng-model="radio"> vrije tijd<br>
+  <input type="radio" name="gender" value="5" ng-model="radio"> kinderen<br>
+  <input type="radio" name="gender" value="6" ng-model="radio"> overig<br>
+  <input type="radio" name="gender" value="7" ng-model="radio"> klussen
+</form>
+<h1>{{radio}}</h1>
+
+
+
+
+
+<div class="alert alert-warning" ng-show="loading">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <h4>Uw winkels wordt geladen, please stand by</h4>
+</div>
 <table class="table table-striped table-hover"  >
-  <tr ng-repeat="winkel in winkels  | orderBy:'title' track by winkel.id">
-    <td>
+
+    <tr dir-paginate="winkel in winkels | orderBy:'title' |itemsPerPage: 25">
+    <td width="100">
       {{winkel.id}}
     </td>
     <td>
@@ -14,3 +38,5 @@
     </td>
   </tr>
 </table>
+<dir-pagination-controls></dir-pagination-controls>
+</div>

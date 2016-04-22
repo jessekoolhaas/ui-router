@@ -1,4 +1,5 @@
-myapp.config(['$urlRouterProvider', '$stateProvider','$locationProvider', function($urlRouterProvider, $stateProvider, $locationProvider){
+
+myapp.config(['$urlRouterProvider', '$stateProvider','$locationProvider','$httpProvider', function($urlRouterProvider, $stateProvider, $locationProvider){
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
   $stateProvider
@@ -8,7 +9,7 @@ myapp.config(['$urlRouterProvider', '$stateProvider','$locationProvider', functi
       templateUrl: "/site/frontpage.html"
   })
   .state ('winkels', {
-      url: "/test/winkels",
+      url: "/winkels",
       templateUrl:"/site/winkels.html",
       controller: 'allWinkelDatabase'
     })
@@ -17,13 +18,20 @@ myapp.config(['$urlRouterProvider', '$stateProvider','$locationProvider', functi
         templateUrl:"/site/winkel-display.html",
         controller: 'singleWinkelDatabase'
       })
-      .state ('wel', {
-        url:"/wel",
-        templateUrl: "/site/wel.html"
-      })
-      .state ('niet', {
-        url:"/test/niet",
-        templateUrl: "/site/niet.html"
-      });
+      .state ('api', {
+          url: "/api",
+          templateUrl:"/site/api.html",
+          controller: 'apiTest'
+        })
+        .state ('login', {
+            url: "/login",
+            templateUrl:"/site/login.html"
+          })
+        .state ('dashboard', {
+          url: "/dashboard",
+          templateUrl:"/site/dashboard.html"
+        })
+
+
 
 }]);

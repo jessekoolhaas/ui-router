@@ -1,0 +1,17 @@
+<div ng-controller="myCtrl">
+    Free Form Search: <input type="text" ng-model="search" placeholder="Search" />
+    <div>
+        Filter By Category:
+        <button ng-repeat="cat in categories" ng-click="filterProductsByCategory(cat)">{{cat}}</button>
+    </div>
+    <table cellpadding="5" cellspacing="0" border="1">
+        <tr>
+            <th>Product</th>
+            <th>Category</th>
+        </tr>
+        <tr ng-repeat="product in products | filter:search | orderBy:'name'">
+            <td>{{product.name}}</td>
+            <td>{{product.category}}</td>
+      </tr>
+    </table>
+  </div>
